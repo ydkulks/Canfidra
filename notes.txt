@@ -1,0 +1,9 @@
+Things to learn
+===============
+- WebRTC
+- Media Devices API
+- WebSocket
+- STUN (Session Traversal Utilities for NAT) and
+  TURN (Traversal Using Relays around NAT)
+- Signaling Server
+- Peer-to-peer Communication

@@ -17,8 +17,11 @@ const Video_Audio = () => {
   }, []);
   return (
     <div>
-      <div className="border-solid border-2 border-slate-100">
-        <video ref={videoRef} />
+      <div>
+        <video
+          className="border-solid border-2 rounded-lg border-slate-100"
+          ref={videoRef}
+        />
       </div>
     </div>
   );
