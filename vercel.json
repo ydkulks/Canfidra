@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "env": {
+    "APP_ID": "@channels_app_id",
+    "KEY": "app_key",
+    "SECRET": "@channels_app_secret",
+    "CLUSTER": "cluster_region"
+  }
+}

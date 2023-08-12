@@ -17,9 +17,9 @@ const Video_Audio = () => {
   }, []);
   return (
     <div>
-      <div>
+      <div className="h-80 w-96">
         <video
-          className="border-solid border-2 rounded-lg border-slate-100"
+          className="h-80 w-96 border-solid border-2 rounded-lg border-slate-100"
           ref={videoRef}
         />
       </div>

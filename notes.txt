@@ -1,5 +1,7 @@
 Things to learn
 ===============
+Browser APIs:
+-------------
 - WebRTC
 - Media Devices API
 - WebSocket
@@ -7,3 +9,12 @@ Things to learn
   TURN (Traversal Using Relays around NAT)
 - Signaling Server
 - Peer-to-peer Communication
+
+Vercel:
+-------
+- Pusher (for Real-Time server connection)
+- Edge function
+
+WebRTC:
+======
+WebRTC(Web Real-Time Communication) 
