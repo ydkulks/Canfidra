@@ -1,3 +1,4 @@
+"use client";
 import { IcRoundVideocam, IcBaselineMic } from "./icons";
 export default function FunctionalTray() {
   return (
@@ -7,6 +8,9 @@ export default function FunctionalTray() {
       </button>
       <button className="p-2 dark:hover:text-slate-500">
         <IcBaselineMic />
+      </button>
+      <button className="p-2 dark:hover:text-slate-500">
+        Screen_Share
       </button>
     </div>
   );

@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import { useRef, useEffect } from "react";
-const Video_Audio = () => {
+const Screen_Share = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
-    const constraints = { video: { width: 1280, height: 720 }, audio: false };
+    const constraints:any = { video: { chromeMediaSource:'screen' }, audio: false };
 
     const successCallback = (stream: any) => {
       let video: any = videoRef.current;
@@ -16,7 +16,7 @@ const Video_Audio = () => {
       console.error(err);
     };
 
-    const media = navigator.mediaDevices.getUserMedia(constraints);
+    const media = navigator.mediaDevices.getDisplayMedia(constraints);
     media.then(successCallback).catch(errorCallback);
   }, []);
 
@@ -33,4 +33,4 @@ const Video_Audio = () => {
   );
 };
 
-export default Video_Audio;
+export default Screen_Share;
