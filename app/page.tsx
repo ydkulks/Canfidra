@@ -5,22 +5,26 @@ import Screen_Share from "./screen_share";
 import FunctionalTray from "./functional_tray";
 import { useState } from "react";
 export default function Home() {
-  const [isScreenShare, setIsScreenShare] = useState(false);
-  const screensharetoggle = () => {
-    if (isScreenShare) {
-      setIsScreenShare(false);
-    } else {
-      setIsScreenShare(true);
-    }
-  };
+  const [screenShare, setScreenShare] = useState(false);
+  const [mic, setMic] = useState(false);
+  const [camera, setCamera] = useState(false);
+  // let screenShare:boolean = false;
   return (
-    <main className="p-10">
+    <main className="p-10 min-h-screen bg-slate-900">
       <Navbar />
       <h3 className="text-3xl">Confidra</h3>
-      <Video_Audio />
-      <button onClick={screensharetoggle}>Screen Share</button>
-      {isScreenShare && <Screen_Share />}
-      <FunctionalTray />
+      {camera && <Video_Audio />}
+      {screenShare && <Screen_Share />}
+      <div className="absolute bottom-0 w-11/12">
+        <FunctionalTray
+          screenShare={screenShare}
+          setScreenShare={setScreenShare}
+          mic={mic}
+          setMic={setMic}
+          camera={camera}
+          setCamera={setCamera}
+        />
+      </div>
     </main>
   );
 }
