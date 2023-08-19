@@ -1,33 +1,57 @@
 "use client";
 import React from "react";
-import { useRef, useEffect } from "react";
-const Screen_Share = () => {
+import { useRef, useEffect, useState } from "react";
+
+interface ScreenProps {
+  screenShare: boolean;
+}
+
+const Screen_Share: React.FC<ScreenProps> = ({ screenShare }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [screenStream, setScreenStream] = useState<MediaStream | null>(null);
 
   useEffect(() => {
-    const constraints:any = { video: { chromeMediaSource:'screen' }, audio: false };
-
-    const successCallback = (stream: any) => {
-      let video: any = videoRef.current;
-      video.srcObject = stream;
+    const constraints: any = {
+      video: {
+        chromeMediaSource: "screen",
+      },
+      audio: true,
     };
 
-    const errorCallback = (err: any) => {
-      console.error(err);
-    };
+    if (screenShare) {
+      navigator.mediaDevices
+        .getDisplayMedia(constraints)
+        .then((stream: MediaStream) => {
+          let video: HTMLVideoElement = videoRef.current!;
+          video.srcObject = stream;
+          setScreenStream(stream);
+        })
+        .catch((error: any) => {
+          console.error("Error accessing screen sharing:", error);
+        });
+    } else {
+      if (screenStream) {
+        screenStream.getTracks().forEach((track: MediaStreamTrack) => {
+          track.stop();
+        });
+        setScreenStream(null);
+      }
+    }
 
-    const media = navigator.mediaDevices.getDisplayMedia(constraints);
-    media.then(successCallback).catch(errorCallback);
-  }, []);
+    // Cleanup: Stop the screen sharing stream when the component unmounts
+    return () => {
+      if (screenStream) {
+        screenStream.getTracks().forEach((track: MediaStreamTrack) => {
+          track.stop();
+        });
+      }
+    };
+  }, [screenShare]);
 
   return (
     <div>
-      <div>
-        <video
-          className="border-solid border-2 rounded-lg border-slate-100"
-          ref={videoRef}
-          autoPlay
-        />
+      <div className="p-10 h-fit w-fit">
+        {screenShare ? <video className="rounded-lg" ref={videoRef} autoPlay /> : null}
       </div>
     </div>
   );
