@@ -10,7 +10,7 @@ const Camera: React.FC<CameraProps> = ({ camera }) => {
   const [cameraStream, setCameraStream] = useState<MediaStream | null>(null);
 
   useEffect(() => {
-    const constraints = { video: camera };
+    const constraints = { video: {camera,width:1090, height:800} };
 
     if (camera) {
       navigator.mediaDevices

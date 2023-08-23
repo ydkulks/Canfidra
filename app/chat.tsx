@@ -1,4 +1,4 @@
-import { IcRoundAccountCircle, IcRoundSend } from "./icons";
+import { IcRoundSend } from "./icons";
 import { useState } from "react";
 
 interface MessageProps {
@@ -23,34 +23,37 @@ const Chat: React.FC<MessageProps> = ({ message }) => {
   return (
     <div>
       {message ? (
-        <div className="absolute right-0 left-auto top-0 h-full">
-          <div className="bg-gray-800 min-w-10 max-w-20 min-h-full p-5">
-            <div className="">
-              {submittedValue && (
-                <div>
-                  <IcRoundAccountCircle />
-                  <p className="dark:text-slate-400">User name</p>
-                  <div className="dark:bg-slate-600 w-fit px-3 py-1 rounded-md">
-                    <p>{submittedValue}</p>
-                  </div>
+        <div className="absolute right-2 left-auto top-16 h-5/6 w-80">
+          <div className="bg-zinc-800 min-w-10 max-w-20 min-h-full p-5 rounded-lg">
+            {submittedValue && (
+              <div className="grid justify-end">
+                <div className="flex my-1 justify-end">
+                  <p className="dark:text-slate-400">You</p>
                 </div>
-              )}
+                <div className="dark:bg-green-900 w-fit max-w-[25ch] px-3 py-1 rounded-md overflow-hidden">
+                  <p className="break-words whitespace-pre-wrap">
+                    {submittedValue}
+                  </p>
+                </div>
+              </div>
+            )}
+            <div className="absolute bottom-0 right-2 flex">
+              <form onSubmit={handleSubmit} className="flex my-2">
+                <input
+                  className="focus:outline-none dark:bg-slate-600 rounded-l-md h-10 p-3 ml-1 items-center"
+                  type="text"
+                  placeholder="Send a message"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                />
+                <button
+                  className="text-green-500 bg-slate-600 hover:text-green-600 mr-1 rounded-r-md pr-2 pl-2"
+                  type="submit"
+                >
+                  <IcRoundSend />
+                </button>
+              </form>
             </div>
-            <form onSubmit={handleSubmit} className="flex my-2">
-              <input
-                className="dark:bg-slate-600 rounded-l-md h-10 p-3 ml-1 items-center"
-                type="text"
-                placeholder="Send a message"
-                value={inputValue}
-                onChange={handleInputChange}
-              />
-              <button
-                className="text-green-500 bg-slate-600 hover:text-green-600 mr-1 rounded-r-md pr-2 pl-2"
-                type="submit"
-              >
-                <IcRoundSend />
-              </button>
-            </form>
           </div>
         </div>
       ) : null}

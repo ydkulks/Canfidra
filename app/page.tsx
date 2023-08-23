@@ -10,7 +10,7 @@ import {
   IcRoundScreenShare,
   IcRoundAccountCircle,
   IcRoundMessage,
-  IcRoundPhoneDisabled,
+  IcRoundCallEnd,
 } from "./icons";
 import { useState } from "react";
 
@@ -22,7 +22,7 @@ export default function Home() {
   const [callState, setCallState] = useState(false);
   const [message, setMessage] = useState(false);
   return (
-    <main className="min-h-screen bg-slate-900">
+    <main className="min-h-screen bg-zinc-900">
       <Navbar />
       <Chat message={message} />
       <Camera camera={camera} />
@@ -67,10 +67,10 @@ export default function Home() {
             <IcRoundScreenShare />
           </button>
           <button
-            className="m-2 p-2 rounded-full bg-red-500 hover:bg-red-600"
+            className="m-2 p-2 rounded-full bg-red-500 hover:bg-red-600 px-5"
             onClick={() => setCallState(!callState)}
           >
-            <IcRoundPhoneDisabled />
+            <IcRoundCallEnd />
           </button>
         </div>
         <div className="items-end">
