@@ -30,7 +30,7 @@ export default function Home() {
       <Screen_Share screenShare={screenShare} />
 
       {/* Buttons for Video, Audio and Screen share*/}
-      <div className="absolute w-full bottom-0 flex justify-between">
+      <div className="sticky w-full bottom-0 flex justify-between">
         <div>
           <button
             className={`m-2 p-2 rounded-full hover:dark:bg-slate-700 ${
