@@ -22,12 +22,15 @@ export default function Home() {
   const [callState, setCallState] = useState(false);
   const [message, setMessage] = useState(false);
   return (
-    <main className="min-h-screen bg-zinc-900">
-      <Navbar />
+
+    <main className="bg-zinc-900">
       <Chat message={message} />
-      <Camera camera={camera} />
-      <Microphone mic={mic} />
-      <Screen_Share screenShare={screenShare} />
+      <div className="min-h-[93vh]">
+        <Navbar />
+        <Camera camera={camera} />
+        <Screen_Share screenShare={screenShare} />
+        <Microphone mic={mic} />
+      </div>
 
       {/* Buttons for Video, Audio and Screen share*/}
       <div className="sticky w-full bottom-0 flex justify-between">
