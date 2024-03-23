@@ -1,9 +1,10 @@
 "use client";
-import Navbar from "./navbar";
+// import Navbar from "./navbar";
 import Camera from "./camera";
 import Microphone from "./microphone";
 import Screen_Share from "./screen_share";
 import Chat from "./chat";
+import Signin from "./signin";
 import {
   IcRoundVideocam,
   IcBaselineMic,
@@ -11,10 +12,55 @@ import {
   IcRoundAccountCircle,
   IcRoundMessage,
   IcRoundCallEnd,
+  Logout,
 } from "./icons";
 import { useState } from "react";
 
-export default function Home() {
+// Import the functions you need from the firebase SDKs you need
+import { initializeApp } from "firebase/app";
+import 'firebase/firestore';
+import 'firebase/auth';
+
+// Import the hooks for firebase
+// import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth, signOut } from "firebase/auth";
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBXLnHNWsEm6jy_gnBBlKJRvsK-fqoxv7k",
+  authDomain: "confidra.firebaseapp.com",
+  projectId: "confidra",
+  storageBucket: "confidra.appspot.com",
+  messagingSenderId: "476318732772",
+  appId: "1:476318732772:web:a57658fb798868fe95f7f1",
+  measurementId: "G-5Z1MNDHZ9Z"
+};
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+interface AccountProps {
+  account: boolean;
+}
+const UserSettings: React.FC<AccountProps> = ({ account }) => {
+  return (
+    <div>
+      {account ? (
+        <div className="absolute left-1 right-auto top-auto bottom-16 h-15">
+          <div className="bg-zinc-800 h-full p-5 rounded-lg">
+            <button
+              className="inline-flex text-sm hover:text-gray-400"
+              onClick={() => signOut(auth)}>
+              <Logout />&nbsp;Singout
+            </button>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  )
+}
+
+function Room() {
   const [account, setAccount] = useState(false);
   const [screenShare, setScreenShare] = useState(false);
   const [mic, setMic] = useState(false);
@@ -25,8 +71,9 @@ export default function Home() {
 
     <main className="bg-zinc-900">
       <Chat message={message} />
+      <UserSettings account={account} />
       <div className="min-h-[93vh]">
-        <Navbar />
+        {/*<Navbar />*/}
         <Camera camera={camera} />
         <Screen_Share screenShare={screenShare} />
         <Microphone mic={mic} />
@@ -36,9 +83,8 @@ export default function Home() {
       <div className="sticky w-full bottom-0 flex justify-between">
         <div>
           <button
-            className={`m-2 p-2 rounded-full hover:dark:bg-slate-700 ${
-              account ? "bg-red-500" : ""
-            }`}
+            className={`m-2 p-2 rounded-full hover:dark:bg-slate-700 ${account ? "bg-red-500" : ""
+              }`}
             onClick={() => setAccount(!account)}
           >
             <IcRoundAccountCircle />
@@ -46,25 +92,22 @@ export default function Home() {
         </div>
         <div>
           <button
-            className={`m-2 p-2 rounded-full hover:dark:bg-slate-700 ${
-              camera ? "bg-red-500" : ""
-            }`}
+            className={`m-2 p-2 rounded-full hover:dark:bg-slate-700 ${camera ? "bg-red-500" : ""
+              }`}
             onClick={() => setCamera(!camera)}
           >
             <IcRoundVideocam />
           </button>
           <button
-            className={`m-2 p-2 rounded-full hover:dark:bg-slate-700 ${
-              mic ? "bg-red-500" : ""
-            }`}
+            className={`m-2 p-2 rounded-full hover:dark:bg-slate-700 ${mic ? "bg-red-500" : ""
+              }`}
             onClick={() => setMic(!mic)}
           >
             <IcBaselineMic />
           </button>
           <button
-            className={`m-2 p-2 rounded-full hover:dark:bg-slate-700 ${
-              screenShare ? "bg-red-500" : ""
-            }`}
+            className={`m-2 p-2 rounded-full hover:dark:bg-slate-700 ${screenShare ? "bg-red-500" : ""
+              }`}
             onClick={() => setScreenShare(!screenShare)}
           >
             <IcRoundScreenShare />
@@ -78,9 +121,8 @@ export default function Home() {
         </div>
         <div className="items-end">
           <button
-            className={`m-2 p-2 rounded-full hover:dark:bg-slate-700 ${
-              message ? "bg-red-500" : ""
-            }`}
+            className={`m-2 p-2 rounded-full hover:dark:bg-slate-700 ${message ? "bg-red-500" : ""
+              }`}
             onClick={() => setMessage(!message)}
           >
             <IcRoundMessage />
@@ -89,4 +131,13 @@ export default function Home() {
       </div>
     </main>
   );
+}
+
+export default function Main() {
+  const [user] = useAuthState(auth);
+  return (
+    <section>
+      {user ? <Room /> : <Signin />}
+    </section>
+  )
 }
