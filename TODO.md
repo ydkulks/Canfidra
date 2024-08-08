@@ -12,12 +12,17 @@
 ## 📌 Useful Resources
 - [WebRTC samples](https://webrtc.github.io/samples/)
 - [Official WebRTC tutorial](https://codelabs.developers.google.com/codelabs/webrtc-web/#0)
+- [Socket.io](https://socket.io/docs/v4/tutorial/introduction)
 
 ## 🔑 Key Concepts
 
 - WebRTC
 - Media Devices API
-- WebSocket
+- Socket.io
+- Low-level transports:
+    - HTTP Pooling
+    - WebSocket
+    - WebTransport
 - STUN (Session Traversal Utilities for NAT) and
   TURN (Traversal Using Relays around NAT)
 - Signaling Server
