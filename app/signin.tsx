@@ -9,13 +9,13 @@ import React from "react";
 function Signin() {
   // Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyBXLnHNWsEm6jy_gnBBlKJRvsK-fqoxv7k",
-    authDomain: "confidra.firebaseapp.com",
-    projectId: "confidra",
-    storageBucket: "confidra.appspot.com",
-    messagingSenderId: "476318732772",
-    appId: "1:476318732772:web:a57658fb798868fe95f7f1",
-    measurementId: "G-5Z1MNDHZ9Z"
+    apiKey: process.env.NEXT_PUBLIC_APIKEY,
+    authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
+    projectId: process.env.NEXT_PUBLIC_PROJECTID,
+    storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
+    appId: process.env.NEXT_PUBLIC_APPID,
+    measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID
   };
 
   // Initialize Firebase

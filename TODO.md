@@ -5,9 +5,13 @@
 - [x] Screen capture and it's audio
 - [x] Basic chat form
 - [x] Auth
-- [ ] Signaling Server
-  - [ ] Connect to server
-- [ ] Peer-to-peer Communication
+- [x] Signaling Server
+  - [x] Connect to server
+- [x] Peer-to-peer Communication
+- [x] Chat
+- [ ] Audio
+- [ ] Screen share
+- [ ] Camera
 
 ## 📌 Useful Resources
 - [WebRTC samples](https://webrtc.github.io/samples/)

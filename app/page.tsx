@@ -27,13 +27,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth, signOut } from "firebase/auth";
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBXLnHNWsEm6jy_gnBBlKJRvsK-fqoxv7k",
-  authDomain: "confidra.firebaseapp.com",
-  projectId: "confidra",
-  storageBucket: "confidra.appspot.com",
-  messagingSenderId: "476318732772",
-  appId: "1:476318732772:web:a57658fb798868fe95f7f1",
-  measurementId: "G-5Z1MNDHZ9Z"
+    apiKey: process.env.NEXT_PUBLIC_APIKEY,
+    authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
+    projectId: process.env.NEXT_PUBLIC_PROJECTID,
+    storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
+    appId: process.env.NEXT_PUBLIC_APPID,
+    measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -61,6 +61,7 @@ const UserSettings: React.FC<AccountProps> = ({ account }) => {
 }
 
 function Room() {
+  const [user]:any = useAuthState(auth);
   const [account, setAccount] = useState(false);
   const [screenShare, setScreenShare] = useState(false);
   const [mic, setMic] = useState(false);
@@ -70,7 +71,7 @@ function Room() {
   return (
 
     <main className="bg-zinc-900">
-      <Chat message={message} />
+      <Chat message={message} user={user.displayName} />
       <UserSettings account={account} />
       <div className="min-h-[93vh]">
         {/*<Navbar />*/}

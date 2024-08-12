@@ -25,3 +25,36 @@ Confidra redefines secure conferencing by seamlessly blending the essence of
   diverse collaboration needs.
 
 Discover the power of Confidra and embark on secure communication's next era.
+
+## How to run?
+1. Clone the repository
+```sh
+git clone github.com/ydkulks/Confidra
+```
+2. Install the dependency packages (both for front-end and back-end)
+
+```sh
+cd Confidra
+npm install
+cd backend
+npm install
+```
+3. Add the credentials of `Firebase` for Authentication in `.env` file
+
+```txt
+NEXT_PUBLIC_APIKEY=
+NEXT_PUBLIC_AUTHDOMAIN=
+NEXT_PUBLIC_PROJECTID=
+NEXT_PUBLIC_STORAGEBUCKET=
+NEXT_PUBLIC_MESSAGINGSENDERID=
+NEXT_PUBLIC_APPID=
+NEXT_PUBLIC_MEASUREMENTID=
+```
+4. Run both front-end and back-end
+
+```sh
+cd Confidra
+npm run build
+cd Confidra/backend
+npm run build
+```
