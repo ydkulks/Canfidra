@@ -7,11 +7,15 @@
 - [x] Auth
 - [x] Signaling Server
   - [x] Connect to server
+- [x] Room
 - [x] Peer-to-peer Communication
 - [x] Chat
 - [ ] Audio
 - [ ] Screen share
 - [ ] Camera
+
+## Known Issues
+- [ ] Unable to emit events to specific room
 
 ## 📌 Useful Resources
 - [WebRTC samples](https://webrtc.github.io/samples/)

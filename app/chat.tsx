@@ -1,8 +1,9 @@
 "use client";
 import { IcRoundSend } from "./icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { io } from 'socket.io-client';
 
+// NOTE: Change URL for production
 const socket = io("http://localhost:4000");
 
 interface ChatType {
@@ -28,9 +29,10 @@ const ChatBubble: React.FC<ChatType> = ({ user, message }) => {
 interface MessageProps {
   message: boolean;
   user: any;
+  room: null | string;
 }
 
-const Chat: React.FC<MessageProps> = ({ message, user }) => {
+const Chat: React.FC<MessageProps> = ({ message, user, room }) => {
   const [inputValue, setInputValue] = useState("");
   // const [submittedValue, setSubmittedValue] = useState("");
   const [submittedValue, setSubmittedValue] = useState<string[]>([]);
@@ -41,7 +43,7 @@ const Chat: React.FC<MessageProps> = ({ message, user }) => {
     event.preventDefault();
     const trimmedValue = inputValue.trim();
     if (trimmedValue !== "") {
-      socket.emit('chat message', trimmedValue);
+      socket.emit('chat message', room, trimmedValue);
       setInputValue("");
     }
   };

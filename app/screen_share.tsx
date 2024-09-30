@@ -14,8 +14,8 @@ const Screen_Share: React.FC<ScreenProps> = ({ screenShare }) => {
     const constraints: any = {
       video: {
         chromeMediaSource: "screen",
-				width: 1300,
-				height: 800,
+        width: 1300,
+        height: 800,
       },
       audio: true,
     };
@@ -53,7 +53,7 @@ const Screen_Share: React.FC<ScreenProps> = ({ screenShare }) => {
   return (
     <div>
       <div className="p-10">
-        {screenShare ? <video className="rounded-lg h-fit w-auto" ref={videoRef} autoPlay /> : null}
+        {screenShare ? <video className="rounded-lg h-fit w-auto" ref={videoRef} autoPlay muted playsInline /> : null}
       </div>
     </div>
   );
